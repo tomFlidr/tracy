@@ -7,8 +7,6 @@
  * @outputMatchFile expected/Debugger.strict.console.expect
  */
 
-declare(strict_types=1);
-
 use Tracy\Debugger;
 
 

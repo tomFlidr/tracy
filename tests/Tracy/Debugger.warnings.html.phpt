@@ -5,8 +5,6 @@
  * @outputMatch OK!
  */
 
-declare(strict_types=1);
-
 use Tester\Assert;
 use Tester\DomQuery;
 use Tracy\Debugger;
@@ -30,13 +28,17 @@ register_shutdown_function(function () {
 	Assert::match('
 Warning: Unsupported declare \'foo\' in %a% on line %d%%A%', $output);
 
-	preg_match('#Tracy\.Debug\.init\((".*[^\\\\]")\)#', $output, $m);
+	preg_match('#Tracy\.Debug\.init\((".*[^\\\\]"),#', $output, $m);
 	$rawContent = json_decode($m[1]);
 	$panelContent = (string) DomQuery::fromHtml($rawContent)->find('#tracy-debug-panel-Tracy-errors')[0]['data-tracy-content'];
-	Assert::match('%A%<table class="tracy-sortable">
+	Assert::match('%A%<table>
 <tr>
 	<td class="tracy-right">1%a%</td>
-	<td><pre>PHP Deprecated: mktime(): You should be using the time() function instead in %a%:%d%</a></pre></td>
+	<td><pre>PHP %a%: mktime(): You should be using the time() function instead in %a%:%d%</a></pre></td>
+</tr>
+<tr>
+	<td class="tracy-right">1%a%</td>
+	<td><pre>PHP Deprecated: mktime(): %a%</a></pre></td>
 </tr>
 <tr>
 	<td class="tracy-right">1%a%</td>
@@ -45,10 +47,6 @@ Warning: Unsupported declare \'foo\' in %a% on line %d%%A%', $output);
 <tr>
 	<td class="tracy-right">1%a%</td>
 	<td><pre>PHP Warning: %a% in %a%:%d%</a></pre></td>
-</tr>
-<tr>
-	<td class="tracy-right">1%a%</td>
-	<td><pre>PHP Compile Warning: Unsupported declare &#039;foo&#039; in %a%:%d%</a></pre></td>
 </tr>
 </table>
 </div>%A%', $panelContent);
@@ -70,7 +68,8 @@ function second($arg1, $arg2)
 
 function third($arg1)
 {
-	mktime(); // E_DEPRECATED
+	mktime(); // E_STRICT in PHP 5, E_DEPRECATED in PHP 7
+	PHP_MAJOR_VERSION < 7 ? mktime(0, 0, 0, 1, 23, 1978, 1) : mktime(); // E_DEPRECATED
 	$x++; // E_NOTICE
 	min(1); // E_WARNING
 	require __DIR__ . '/fixtures/E_COMPILE_WARNING.php'; // E_COMPILE_WARNING

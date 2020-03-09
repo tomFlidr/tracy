@@ -4,8 +4,6 @@
  * Test: Tracy\Dumper::toText() recursion
  */
 
-declare(strict_types=1);
-
 use Tester\Assert;
 use Tracy\Dumper;
 
@@ -19,7 +17,11 @@ Assert::match('array (4)
    0 => 1
    1 => 2
    2 => 3
-   3 => array (3) [ RECURSION ]
+   3 => array (4)
+   |  0 => 1
+   |  1 => 2
+   |  2 => 3
+   |  3 => array (4) [ RECURSION ]
 ', Dumper::toText($arr));
 
 

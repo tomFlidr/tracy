@@ -6,16 +6,15 @@
 	<meta name="generator" content="Tracy by Nette Framework">
 
 	<title>Error: Call to undefined function missing_function()</title>
-	<!-- in %a%:%d% -->
 
 	%A%
 </head>
 
 
 <body>
-<div id="tracy-bs" itemscope>
+<div id="tracy-bs">
 	<a id="tracy-bs-toggle" href="#" class="tracy-toggle"></a>
-	<div class="tracy-bs-main">
+	<div>
 		<div id="tracy-bs-error" class="panel">
 			<p>Error</p>
 
@@ -165,7 +164,7 @@
 		<div class="tracy-collapsed inner">
 			<h3><a data-tracy-ref="^+" class="tracy-toggle">$_SERVER</a></h3>
 			<div class="outer">
-			<table class="tracy-sortable">%A%</table>
+			<table>%A%</table>
 			</div>
 
 
@@ -177,7 +176,7 @@
 
 						<h3><a data-tracy-ref="^+" class="tracy-toggle tracy-collapsed">Constants</a></h3>
 			<div class="outer tracy-collapsed">
-			<table class="tracy-sortable">%A%</table>
+			<table>%A%</table>
 			</div>
 
 
@@ -187,7 +186,7 @@
 		</div></div>
 
 
-				<div class="panel">
+		<div class="panel">
 		<h2><a data-tracy-ref="^+" class="tracy-toggle tracy-collapsed">HTTP request</a></h2>
 
 		<div class="tracy-collapsed inner">
@@ -206,20 +205,20 @@
 
 		<div class="tracy-collapsed inner">
 			<h3>Headers</h3>
-						<div class="outer">%A%</div>
+						<pre>%A%</pre>
 					</div></div>
 
 
 
-		<footer>
-			<ul>
-				<li><b><a href="https://nette.org/make-donation?to=tracy" target="_blank" rel="noreferrer noopener">%a%️</a></b></li>
-				<li>Report generated at %a%</li>
-				<li>PHP %a%</li>			</ul>
-			<div class="footer-logo"><a href="https://tracy.nette.org" rel="noreferrer"></a></div>
-		</footer>
+
+		<ul>
+			<li><b><a href="https://nette.org/make-donation?to=tracy" target="_blank" rel="noreferrer noopener">%a%️</a></b></li>
+			<li>Report generated at %a%</li>
+			<li>CLI%a?%</li>
+			<li>PHP %a%</li>		</ul>
+
+		<div id="tracy-bs-logo"><a href="https://tracy.nette.org" rel="noreferrer"></a></div>
 	</div>
-	<meta itemprop=tracy-snapshot content=%a%>
 </div>
 
 <script>%A%</script>

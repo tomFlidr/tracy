@@ -4,8 +4,6 @@
  * Test: Tracy\Debugger logging exceptions in log message.
  */
 
-declare(strict_types=1);
-
 use Tester\Assert;
 use Tracy\Debugger;
 
@@ -14,7 +12,7 @@ require __DIR__ . '/../bootstrap.php';
 
 
 // Setup environment
-Debugger::$logDirectory = getTempDir();
+Debugger::$logDirectory = TEMP_DIR;
 
 
 function foo($fp)
@@ -24,9 +22,9 @@ function foo($fp)
 
 
 for ($i = 0; $i < 3; $i++) {
-	$path = getTempDir() . "/$i";
+	$path = TEMP_DIR . "/$i";
 	try {
-		$files[] = $file = fopen(getTempDir() . "/$i", 'w');
+		$files[] = $file = fopen(TEMP_DIR . "/$i", 'w');
 		foo($file);
 	} catch (Exception $e) {
 		$name[] = Debugger::log($e);

@@ -7,8 +7,6 @@
  * @outputMatch %A%<title>Exception: </title>%A%
  */
 
-declare(strict_types=1);
-
 use Tracy\Debugger;
 
 

@@ -2,10 +2,7 @@
 
 /**
  * Test: Tracy\Debugger E_RECOVERABLE_ERROR error.
- * @phpversion < 7.4
  */
-
-declare(strict_types=1);
 
 use Tester\Assert;
 use Tracy\Debugger;
@@ -43,14 +40,14 @@ $obj = new TestClass;
 Assert::exception(function () use ($obj) {
 	// Invalid argument #1
 	$obj->test1('hello');
-}, TypeError::class, 'Argument 1 passed to TestClass::test1() must be %a% array, string given, called in %a%');
+}, PHP_MAJOR_VERSION < 7 ? 'ErrorException' : 'TypeError', 'Argument 1 passed to TestClass::test1() must be %a% array, string given, called in %a%');
 
 Assert::exception(function () use ($obj) {
 	// Invalid argument #2
 	$obj->test2('hello');
-}, TypeError::class, 'Argument 1 passed to TestClass::test2() must be an instance of TestClass, string given, called in %a%');
+}, PHP_MAJOR_VERSION < 7 ? 'ErrorException' : 'TypeError', 'Argument 1 passed to TestClass::test2() must be an instance of TestClass, string given, called in %a%');
 
 Assert::exception(function () use ($obj) {
 	// Invalid toString
 	echo $obj;
-}, ErrorException::class, 'Method TestClass::__toString() must return a string value');
+}, 'ErrorException', 'Method TestClass::__toString() must return a string value');

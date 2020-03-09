@@ -7,8 +7,6 @@
  * @outputMatchFile expected/Debugger.strict.html.expect
  */
 
-declare(strict_types=1);
-
 use Tracy\Debugger;
 
 

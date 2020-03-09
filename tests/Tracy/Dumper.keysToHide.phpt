@@ -1,9 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
 use Tester\Assert;
-use Tester\Expect;
 use Tracy\Dumper;
 
 
@@ -26,42 +23,41 @@ $obj = (object) [
 
 Assert::match('stdClass #%a%
    a => 456
-   password => ***** (string)
-   PASSWORD => ***** (string)
-   Pin => ***** (string)
+   password => "*****" (5)
+   PASSWORD => "*****" (5)
+   Pin => "*****" (5)
    inner => array (4)
    |  a => 123
-   |  password => ***** (string)
-   |  PASSWORD => ***** (string)
-   |  Pin => ***** (string)
+   |  password => "*****" (5)
+   |  PASSWORD => "*****" (5)
+   |  Pin => "*****" (5)
 ', Dumper::toText($obj, [Dumper::KEYS_TO_HIDE => ['password', 'PIN']]));
 
 
-$snapshot = [];
 Assert::match(
-	'<pre class="tracy-dump" data-tracy-dump=\'{"object":1}\'></pre>',
-	Dumper::toHtml($obj, [Dumper::KEYS_TO_HIDE => ['password', 'pin'], Dumper::SNAPSHOT => &$snapshot])
+	'<pre class="tracy-dump" data-tracy-dump=\'{"object":"01"}\'></pre>',
+	Dumper::toHtml($obj, [Dumper::KEYS_TO_HIDE => ['password', 'pin'], Dumper::LIVE => true])
 );
 
-Assert::equal([
-	1 => [
+Assert::same([
+	'01' => [
 		'name' => 'stdClass',
-		'hash' => Expect::match('%h%'),
+		'editor' => null,
 		'items' => [
 			['a', 456, 0],
-			['password', ['type' => '***** (string)'], 0],
-			['PASSWORD', ['type' => '***** (string)'], 0],
-			['Pin', ['type' => '***** (string)'], 0],
+			['password', '*****', 0],
+			['PASSWORD', '*****', 0],
+			['Pin', '*****', 0],
 			[
 				'inner',
 				[
 					['a', 123],
-					['password', ['type' => '***** (string)']],
-					['PASSWORD', ['type' => '***** (string)']],
-					['Pin', ['type' => '***** (string)']],
+					['password', '*****'],
+					['PASSWORD', '*****'],
+					['Pin', '*****'],
 				],
 				0,
 			],
 		],
 	],
-], json_decode(explode("'", Dumper::formatSnapshotAttribute($snapshot))[1], true));
+], Dumper::fetchLiveData());

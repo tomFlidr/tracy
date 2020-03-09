@@ -4,8 +4,6 @@
  * Test: TracyExtension accessors.
  */
 
-declare(strict_types=1);
-
 use Nette\DI;
 use Tester\Assert;
 use Tracy\Bridges\Nette\TracyExtension;
@@ -23,7 +21,6 @@ class CustomLogger implements ILogger
 
 
 $compiler = new DI\Compiler;
-$compiler->setClassName('Container');
 $compiler->addExtension('tracy', new TracyExtension);
 $compiler->addConfig([
 	'tracy' => [
@@ -34,7 +31,7 @@ $compiler->addConfig([
 	],
 ]);
 
-eval($compiler->compile());
+eval(@$compiler->compile([], 'Container')); // @ compatiblity with DI 2.3 & 2.4
 
 $container = new Container;
 $container->initialize();

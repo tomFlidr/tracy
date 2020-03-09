@@ -4,8 +4,6 @@
  * Test: Tracy\Debugger notices and warnings in console.
  */
 
-declare(strict_types=1);
-
 use Tester\Assert;
 use Tracy\Debugger;
 
@@ -34,7 +32,8 @@ function second($arg1, $arg2)
 
 function third($arg1)
 {
-	mktime(); // E_DEPRECATED
+	mktime(); // E_STRICT in PHP 5, E_DEPRECATED in PHP 7
+	PHP_MAJOR_VERSION < 7 ? mktime(0, 0, 0, 1, 23, 1978, 1) : mktime(); // E_DEPRECATED
 	$x++; // E_NOTICE
 	min(1); // E_WARNING
 	require __DIR__ . '/fixtures/E_COMPILE_WARNING.php'; // E_COMPILE_WARNING
@@ -43,7 +42,9 @@ function third($arg1)
 
 first(10, 'any string');
 Assert::match("
-Deprecated: mktime(): You should be using the time() function instead in %a% on line %d%
+%a%: mktime(): You should be using the time() function instead in %a% on line %d%
+
+Deprecated: mktime(): %a%
 
 Notice: Undefined variable: x in %a% on line %d%
 

@@ -4,8 +4,6 @@
  * Test: Tracy\Debugger suggestions
  */
 
-declare(strict_types=1);
-
 use Tester\Assert;
 use Tracy\Helpers;
 
@@ -63,14 +61,6 @@ test(function () use ($obj) { // suggest only public property
 	@$val = $obj->protectedX;
 	$message = Helpers::improveError(error_get_last()['message']);
 	Assert::same('Undefined property: TestClass::$protectedX', $message);
-});
-
-test(function () { // do not suggest anything when accessing anonymous class
-	$obj = new class {
-	};
-	@$val = $obj->property;
-	$message = Helpers::improveError(error_get_last()['message']);
-	Assert::same('Undefined property: class@anonymous::$property', $message);
 });
 
 

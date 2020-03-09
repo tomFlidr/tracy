@@ -7,8 +7,6 @@
  * @outputMatch %A%<title>User Error: Test::__toString</title>%A%
  */
 
-declare(strict_types=1);
-
 use Tracy\Debugger;
 
 

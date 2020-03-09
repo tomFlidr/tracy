@@ -5,8 +5,6 @@
  * @outputMatch %A%<!-- Tracy Debug Bar -->%A%
  */
 
-declare(strict_types=1);
-
 use Tracy\Debugger;
 
 

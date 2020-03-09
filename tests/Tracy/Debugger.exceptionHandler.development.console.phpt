@@ -7,8 +7,6 @@
  * @outputMatch Exception in%A%Unable to log error: %A%
  */
 
-declare(strict_types=1);
-
 use Tracy\Debugger;
 
 

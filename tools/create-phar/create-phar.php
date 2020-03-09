@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 // creates tracy.phar
 if (!class_exists('Phar') || ini_get('phar.readonly')) {
 	echo "Enable Phar extension and set directive 'phar.readonly=off'.\n";
@@ -9,7 +7,7 @@ if (!class_exists('Phar') || ini_get('phar.readonly')) {
 }
 
 
-function compressJs(string $s): string
+function compressJs($s)
 {
 	if (function_exists('curl_init')) {
 		$curl = curl_init('https://closure-compiler.appspot.com/compile');
@@ -23,7 +21,7 @@ function compressJs(string $s): string
 }
 
 
-function compressCss(string $s): string
+function compressCss($s)
 {
 	$s = preg_replace('#/\*.*?\*/#s', '', $s); // remove comments
 	$s = preg_replace('#[ \t\r\n]+#', ' ', $s); // compress space, ignore hard space
@@ -58,8 +56,8 @@ foreach ($iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterato
 		$s = compressCss($s);
 
 	} elseif ($file->getExtension() === 'phtml') {
-		$s = preg_replace_callback('#(<(script|style).*(?<![?=])>)(.*)(</)#Uis', function ($m): string {
-			[, $begin, $type, $s, $end] = $m;
+		$s = preg_replace_callback('#(<(script|style).*(?<![?=])>)(.*)(</)#Uis', function ($m) {
+			list(, $begin, $type, $s, $end) = $m;
 
 			if ($s === '' || strpos($s, '<?') !== false) {
 				return $m[0];
@@ -73,9 +71,6 @@ foreach ($iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterato
 
 			return $begin . $s . $end;
 		}, $s);
-
-	} elseif ($file->getExtension() !== 'php') {
-		continue;
 	}
 
 	$phar[$iterator->getSubPathname()] = $s;

@@ -4,8 +4,6 @@
  * Test: Tracy\Logger it can be extended.
  */
 
-declare(strict_types=1);
-
 use Tester\Assert;
 use Tracy\Logger;
 
@@ -19,7 +17,7 @@ class CustomLogger extends Logger
 	public $collector = [];
 
 
-	public function log($value, $priority = self::INFO): ?string
+	public function log($value, $priority = self::INFO)
 	{
 		$exceptionFile = $value instanceof \Exception ? $this->logException($value) : null;
 
@@ -37,7 +35,7 @@ class CustomLogger extends Logger
 
 
 test(function () {
-	$logger = new CustomLogger(getTempDir());
+	$logger = new CustomLogger(TEMP_DIR);
 	$logger->log(new Exception('First'), 'a');
 
 	Assert::match('a', $logger->collector[0][0]);
@@ -47,7 +45,7 @@ test(function () {
 });
 
 test(function () {
-	$logger = new CustomLogger(getTempDir());
+	$logger = new CustomLogger(TEMP_DIR);
 	$logger->log('message', 'b');
 
 	Assert::match('b', $logger->collector[0][0]);

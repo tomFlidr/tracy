@@ -4,8 +4,6 @@
  * Test: Tracy\Debugger::fireLog() and exception.
  */
 
-declare(strict_types=1);
-
 use Tester\Assert;
 use Tracy\Debugger;
 

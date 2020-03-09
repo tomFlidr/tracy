@@ -7,8 +7,6 @@
  * @outputMatch %A%<title>Server Error</title>%A%Tracy is unable to log error%A%
  */
 
-declare(strict_types=1);
-
 use Tracy\Debugger;
 
 

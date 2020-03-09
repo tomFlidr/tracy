@@ -7,8 +7,6 @@
  * @outputMatch %A%<title>RuntimeException: Logging directory must be absolute path.</title>%A%
  */
 
-declare(strict_types=1);
-
 use Tracy\Debugger;
 
 

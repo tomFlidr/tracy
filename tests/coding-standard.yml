@@ -1,7 +1,7 @@
 imports:
-    - { resource: '../temp/coding-standard/coding-standard-php71.yml' }
+    - { resource: '../temp/coding-standard/coding-standard-php56.yml' }
 
 parameters:
     skip:
         PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer:
-            - src/Tracy/Debugger/Debugger.php
+            - src/Tracy/Debugger.php
