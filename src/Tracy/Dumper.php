@@ -478,6 +478,8 @@ class Dumper
 			return $obj->__debugInfo();
 		}
 
+		if ($obj instanceof \ArrayObject) return $obj;
+
 		return (array) $obj;
 	}
 

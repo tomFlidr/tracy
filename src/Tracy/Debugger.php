@@ -15,7 +15,7 @@ use ErrorException;
  */
 class Debugger
 {
-	const VERSION = '2.5.9';
+	const VERSION = '2.5.10';
 
 	/** server modes for Debugger::enable() */
 	const
@@ -267,7 +267,7 @@ class Debugger
 		self::$reserved = null;
 
 		$error = error_get_last();
-		if ($error !== NULL && in_array($error['type'], [E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_PARSE, E_RECOVERABLE_ERROR, E_USER_ERROR], true)) {
+		if (isset($error['type']) && in_array($error['type'], [E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_PARSE, E_RECOVERABLE_ERROR, E_USER_ERROR], true)) {
 			self::exceptionHandler(
 				Helpers::fixStack(new ErrorException($error['message'], 0, $error['type'], $error['file'], $error['line'])),
 				false

@@ -1,8 +1,0 @@
-
-%a%: mktime(): You should be using the time() function instead in %a% on line %d%
-
-Deprecated: mktime(): %a%
-
-Notice: Undefined variable: x in %a% on line %d%
-
-Warning: %a% in %a% on line %d%
