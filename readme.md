@@ -36,7 +36,7 @@ Installation
 The recommended way to is via Composer:
 
 ```
-composer require tracy/tracy
+composer require tomflidr/tracy
 ```
 
 Alternatively, you can download the whole package or [tracy.phar](https://github.com/nette/tester/releases) file.
