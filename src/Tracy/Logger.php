@@ -166,13 +166,23 @@ class Logger implements ILogger
 	{
 		$snooze = is_numeric($this->emailSnooze)
 			? $this->emailSnooze
-			: @strtotime($this->emailSnooze) - time(); // @ timezone may not be set
-
+			: strtotime($this->emailSnooze) - time();
+		
+		$emailSentPath = $this->directory . '/email-sent';
+		$emailSentExists = file_exists($emailSentPath);
+		$emailSentMtime = FALSE;
+		$emailSentWrite = 1;
+		if (!$emailSentExists) {
+			$emailSentWrite = @file_put_contents($this->directory . '/email-sent', 'sent'); // @ file may not be writable
+		} else {
+			$emailSentMtime = @filemtime($emailSentPath);
+		}
+		
 		if (
 			$this->email
 			&& $this->mailer
-			&& @filemtime($this->directory . '/email-sent') + $snooze < time() // @ file may not exist
-			&& @file_put_contents($this->directory . '/email-sent', 'sent') // @ file may not be writable
+			&& $emailSentMtime + $snooze < time()
+			&& $emailSentWrite
 		) {
 			call_user_func($this->mailer, $message, implode(', ', (array) $this->email));
 		}
