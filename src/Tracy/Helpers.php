@@ -51,10 +51,10 @@ class Helpers
 			$file = strtr($file, Debugger::$editorMapping);
 			return strtr(Debugger::$editor, [
 				'%action' => $action,
-				'%file' => rawurlencode($file),
+				'%file' => $file !== NULL ? rawurlencode($file) : '',
 				'%line' => $line ? (int) $line : 1,
-				'%search' => rawurlencode($search),
-				'%replace' => rawurlencode($replace),
+				'%search' => $search !== NULL ? rawurlencode($search) : '',
+				'%replace' => $replace !== NULL ? rawurlencode($replace) : '',
 			]);
 		}
 	}
