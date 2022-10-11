@@ -15,7 +15,7 @@ use ErrorException;
  */
 class Debugger
 {
-	const VERSION = '2.5.12';
+	const VERSION = '2.5.14';
 
 	/** server modes for Debugger::enable() */
 	const
@@ -504,6 +504,7 @@ class Debugger
 		if (!self::$logger) {
 			self::$logger = new Logger(self::$logDirectory, self::$email, self::getBlueScreen());
 			self::$logger->directory = &self::$logDirectory; // back compatiblity
+			self::$logger->fromEmail = ini_get("sendmail_from");
 			self::$logger->email = &self::$email;
 		}
 		return self::$logger;
