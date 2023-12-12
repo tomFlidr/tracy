@@ -15,7 +15,7 @@ use ErrorException;
  */
 class Debugger
 {
-	const VERSION = '2.5.15';
+	const VERSION = '2.5.16';
 
 	/** server modes for Debugger::enable() */
 	const
@@ -302,7 +302,7 @@ class Debugger
 
 		Helpers::improveException($exception);
 		self::removeOutputBuffers(true);
-
+		
 		if (self::$productionMode) {
 			try {
 				self::log($exception, self::EXCEPTION);

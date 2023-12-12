@@ -41,7 +41,7 @@ composer require tomflidr/tracy
 
 Alternatively, you can download the whole package or [tracy.phar](https://github.com/nette/tester/releases) file.
 
-Tracy 2.5.12 requires PHP version 5.4.4 or newer (supports PHP up to 8.0) and is compatible with Chrome 49+, Firefox 45+, MS Edge 12+, Safari 10+ and iOS Safari 10.2+.
+Tracy 2.5.16 requires PHP version 5.4.4 or newer (supports PHP up to 8.3) and is compatible with Chrome 49+, Firefox 45+, MS Edge 12+, Safari 10+ and iOS Safari 10.2+.
 
 Tracy 2.4 requires PHP version 5.4.4 or newer (supports PHP up to 7.2) and is compatible with Chrome 29+, Firefox 28+, IE 11+, MS Edge 12+, Safari 9+ and iOS Safari 9.2+.
 
