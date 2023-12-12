@@ -327,3 +327,127 @@ html.tracy-js #tracy-bs .tracy-toggle.tracy-collapsed {
 #tracy-bs .caused a {
 	color: white;
 }
+
+
+
+/* source code */
+#tracy-bs pre.tracy-code > div {
+	min-width: 100%;
+	float: left;
+	white-space: pre;
+}
+
+#tracy-bs .tracy-code-comment {
+	color: rgba(0, 0, 0, 0.5);
+	font-style: italic;
+}
+
+#tracy-bs .tracy-code-keyword {
+	color: #D24;
+	font-weight: bold;
+}
+
+#tracy-bs .tracy-code-var {
+	font-weight: bold;
+}
+
+#tracy-bs .tracy-line-highlight {
+	background: #CD1818;
+	color: white;
+	font-weight: bold;
+	font-style: normal;
+	display: block;
+	padding: 0 1ch;
+	margin: 0 -1ch -1lh;
+}
+
+#tracy-bs .tracy-column-highlight {
+	display: inline-block;
+	backdrop-filter: grayscale(1);
+	margin: 0 -1px;
+	padding: 0 1px;
+}
+
+#tracy-bs .tracy-line {
+	color: #9F9C7F;
+	font-weight: normal;
+	font-style: normal;
+}
+
+#tracy-bs a.tracy-editor {
+	color: inherit;
+	border-bottom: 1px dotted rgba(0, 0, 0, .3);
+	border-radius: 3px;
+}
+
+#tracy-bs a.tracy-editor:hover {
+	background: #0001;
+}
+
+#tracy-bs span[data-tracy-href] {
+	border-bottom: 1px dotted rgba(0, 0, 0, .3);
+}
+
+#tracy-bs .tracy-dump-whitespace {
+	color: #0003;
+}
+
+#tracy-bs .tracy-callstack {
+	display: grid;
+	overflow: auto;
+	grid-template-columns: max-content 1fr;
+	row-gap: calc(.5 * var(--tracy-space));
+}
+
+#tracy-bs .tracy-callstack-file {
+	text-align: right;
+	padding-right: var(--tracy-space);
+	white-space: nowrap;
+}
+
+#tracy-bs .tracy-callstack-callee {
+	white-space: nowrap;
+}
+
+#tracy-bs .tracy-callstack-additional {
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+
+#tracy-bs .tracy-callstack-args tr:first-child > * {
+	position: relative;
+}
+
+#tracy-bs .tracy-callstack-args tr:first-child td:before {
+	position: absolute;
+	right: .3em;
+	content: 'may not be true';
+	opacity: .4;
+}
+
+#tracy-bs .tracy-panel-fadein {
+	animation: tracy-panel-fadein .12s ease;
+}
+
+@keyframes tracy-panel-fadein {
+	0% {
+		opacity: 0;
+	}
+}
+
+#tracy-bs .tracy-section--causedby {
+	flex-direction: column;
+	padding: 0;
+}
+
+#tracy-bs .tracy-section--causedby:not(.tracy-collapsed) {
+	display: flex;
+}
+
+#tracy-bs .tracy-section--causedby .tracy-section--error {
+	background: #cd1818a6;
+}
+
+#tracy-bs .tracy-section--error + .tracy-section--stack {
+	margin-top: calc(1.5 * var(--tracy-space));
+}

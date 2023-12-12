@@ -13,6 +13,39 @@ namespace Tracy;
  */
 class Helpers
 {
+	/**
+	 * @internal
+	 * @param  string $s
+	 * @param  array  $colors
+	 * @return string
+	 */
+	public static function htmlToAnsi ($s, $colors) {
+		$stack = ['0'];
+		$s = preg_replace_callback(
+			'#<\w+(?: class=["\']tracy-(?:dump-)?([\w-]+)["\'])?[^>]*>|</\w+>#',
+			function ($m) use ($colors, &$stack) {
+				if ($m[0][1] === '/') {
+					array_pop($stack);
+				} else {
+					$stack[] = isset($m[1], $colors[$m[1]]) ? $colors[$m[1]] : '0';
+				}
+				return "\e[" . end($stack) . 'm';
+			},
+			$s,
+		);
+		$s = preg_replace('/\e\[0m( *)(?=\e)/', '$1', $s);
+		$s = self::htmlToText($s);
+		return $s;
+	}
+	
+	/**
+	 * @internal
+	 * @param  string $s
+	 * @return string
+	 */
+	public static function htmlToText ($s) {
+		return htmlspecialchars_decode(strip_tags($s), ENT_QUOTES | ENT_HTML5);
+	}
 
 	/**
 	 * Returns HTML link to editor.
