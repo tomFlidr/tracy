@@ -246,10 +246,12 @@ class Helpers
 			$ref = new \ReflectionProperty($e, 'message');
 			$ref->setAccessible(true);
 			$ref->setValue($e, $message);
-			$e->tracyAction = [
-				'link' => self::editorUri($e->getFile(), $e->getLine(), 'fix', $replace[0], $replace[1]),
-				'label' => 'fix it',
-			];
+			if (PHP_VERSION_ID >= 80300) {
+				@$e->tracyAction = [ // dynamic properties are deprecated since PHP 8.2
+					'link' => self::editorUri($e->getFile(), $e->getLine(), 'fix', $replace[0], $replace[1]),
+					'label' => 'fix it',
+				];
+			}
 		}
 	}
 
