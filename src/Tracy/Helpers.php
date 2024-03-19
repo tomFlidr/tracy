@@ -31,7 +31,7 @@ class Helpers
 				}
 				return "\e[" . end($stack) . 'm';
 			},
-			$s,
+			$s
 		);
 		$s = preg_replace('/\e\[0m( *)(?=\e)/', '$1', $s);
 		$s = self::htmlToText($s);

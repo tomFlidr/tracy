@@ -54,7 +54,7 @@ final class CodeHighlighter
 						'#((?:&.*?;|[^&]){' . ($column - 1) . '})(&.*?;|.)#u',
 						'\1<span class="tracy-column-highlight">\2</span>',
 						$s . ' ',
-						1,
+						1
 					);
 				}
 				$out .= sprintf("<span class='tracy-line-highlight'>%{$numWidth}s:    %s</span>\n%s", $n, $s, implode('', $openTags));
