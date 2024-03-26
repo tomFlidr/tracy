@@ -4,7 +4,7 @@
 [![Downloads this Month](https://img.shields.io/packagist/dm/tracy/tracy.svg)](https://packagist.org/packages/tracy/tracy)
 [![Build Status](https://travis-ci.org/nette/tracy.svg?branch=master)](https://travis-ci.org/nette/tracy)
 [![Build Status Windows](https://ci.appveyor.com/api/projects/status/github/nette/tracy?branch=master&svg=true)](https://ci.appveyor.com/project/dg/tracy/branch/master)
-[![Latest Stable Version](https://poser.pugx.org/tracy/tracy/v/stable)](https://github.com/nette/tracy/releases)
+[![Latest Stable Version](https://poser.pugx.org/tomflidr/tracy/v/stable)](https://github.com/nette/tracy/releases)
 [![License](https://img.shields.io/badge/license-New%20BSD-blue.svg)](https://github.com/nette/tracy/blob/master/license.md)
 [![Join the chat at https://gitter.im/nette/tracy](https://badges.gitter.im/nette/tracy.svg)](https://gitter.im/nette/tracy)
 
@@ -41,7 +41,7 @@ composer require tomflidr/tracy
 
 Alternatively, you can download the whole package or [tracy.phar](https://github.com/nette/tester/releases) file.
 
-Tracy 2.5.18 requires PHP version 5.4.4 or newer (supports PHP up to 8.3) and is compatible with Chrome 49+, Firefox 45+, MS Edge 12+, Safari 10+ and iOS Safari 10.2+.
+Tracy 2.7.4 requires PHP version 5.4.4 or newer (supports PHP up to 8.3) and is compatible with Chrome 49+, Firefox 45+, MS Edge 12+, Safari 10+ and iOS Safari 10.2+.
 
 Tracy 2.4 requires PHP version 5.4.4 or newer (supports PHP up to 7.2) and is compatible with Chrome 29+, Firefox 28+, IE 11+, MS Edge 12+, Safari 9+ and iOS Safari 9.2+.
 
